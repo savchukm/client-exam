@@ -1,0 +1,54 @@
+<ng-container *ngIf="loading; else dataTableBlock">
+  <div class="spinner-wrapper">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-container>
+<ng-template #dataTableBlock>
+  <table mat-table [dataSource]="data" class="animal-table">
+    <mat-text-column name="cowId" headerText="Cow id" class="abc"></mat-text-column>
+    <mat-text-column name="animalId" headerText="Animal id"></mat-text-column>
+    <mat-text-column name="eventId" headerText="Event id"></mat-text-column>
+    <mat-text-column name="currentGroupId" headerText="Current group id"></mat-text-column>
+    <mat-text-column name="newGroupId" headerText="New group id"></mat-text-column>
+    <mat-text-column name="healthIndex" headerText="healthIndex"></mat-text-column>
+    <mat-text-column name="endDate" headerText="endDate"></mat-text-column>
+    <mat-text-column name="minValueDateTime" headerText="minValueDateTime"></mat-text-column>
+    <mat-text-column name="type" headerText="type"></mat-text-column>
+    <ng-container matColumnDef="deletable">
+      <th mat-header-cell *matHeaderCellDef>Deletable</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox (change)="null"
+                      [checked]="element.deletable"
+                      [disabled]="true">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+    <mat-text-column name="lactationNumber" headerText="lactationNumber"></mat-text-column>
+    <mat-text-column name="oldLactationNumber" headerText="oldLactationNumber"></mat-text-column>
+    <mat-text-column name="daysInLactation" headerText="daysInLactation"></mat-text-column>
+    <mat-text-column name="ageInDays" headerText="ageInDays"></mat-text-column>
+    <mat-text-column name="startDateTime" headerText="startDateTime"></mat-text-column>
+    <mat-text-column name="reportingDateTime" headerText="reportingDateTime"></mat-text-column>
+    <mat-text-column name="sire" headerText="B sire"></mat-text-column>
+    <mat-text-column name="breedingNumber" headerText="breedingNumber"></mat-text-column>
+    <mat-text-column name="interval" headerText="interval"></mat-text-column>
+    <mat-text-column name="heatIndexPeak" headerText="heatIndexPeak"></mat-text-column>
+    <mat-text-column name="newGroupName" headerText="newGroupName"></mat-text-column>
+    <mat-text-column name="currentGroupName" headerText="currentGroupName"></mat-text-column>
+    <mat-text-column name="destinationGroup" headerText="destinationGroup"></mat-text-column>
+    <mat-text-column name="destinationGroupName" headerText="destinationGroupName"></mat-text-column>
+    <mat-text-column name="daysInPregnancy" headerText="daysInPregnancy"></mat-text-column>
+    <mat-text-column name="alertType" headerText="alertType"></mat-text-column>
+    <mat-text-column name="duration" headerText="duration"></mat-text-column>
+    <mat-text-column name="originalStartDateTime" headerText="originalStartDateTime"></mat-text-column>
+    <mat-text-column name="alert" headerText="alert"></mat-text-column>
+    <mat-text-column name="original" headerText="original"></mat-text-column>
+    <mat-text-column name="isOutOfBreedingWindow" headerText="B isOutOfBreedingWindow"></mat-text-column>
+    <mat-text-column name="cowEntryStatus" headerText="cowEntryStatus"></mat-text-column>
+    <mat-text-column name="birthDateCalculated" headerText="B birthDateCalculated"></mat-text-column>
+    <mat-text-column name="newborns" headerText="B newborns"></mat-text-column>
+    <mat-text-column name="calvingEase" headerText="B calvingEase"></mat-text-column>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</ng-template>

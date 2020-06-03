@@ -1,0 +1,26 @@
+.spinner-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.animal-table {
+  width: 100%;
+
+  tr:hover {
+    background: whitesmoke;
+  }
+
+  ::ng-deep tr {
+    th {
+      white-space: nowrap;
+    }
+
+    th, td {
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+  }
+}
