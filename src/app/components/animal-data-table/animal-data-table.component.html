@@ -18,7 +18,8 @@
       <td mat-cell *matCellDef="let row">
         <ng-container *ngIf="!row.editMode; else saveBtn">
           <button mat-raised-button
-                  (click)="editRow(row)" [disabled]="isEditButtonsDisabled()">Edit</button>
+                  (click)="editRow(row)"
+                  [disabled]="isEditButtonsDisabled()">Edit</button>
         </ng-container>
         <ng-template #saveBtn>
           <button mat-raised-button
