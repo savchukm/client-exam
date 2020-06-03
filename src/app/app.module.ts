@@ -5,6 +5,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AppComponent } from './app.component';
 import { AnimalDataTableComponent } from './components/animal-data-table/animal-data-table.component';
@@ -22,7 +25,10 @@ import { HttpMockInterceptor } from './shared/interceptors/http-mock.interceptor
     MatTableModule,
     MatCheckboxModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule
   ],
   providers: [
     {

@@ -5,49 +5,70 @@
 </ng-container>
 <ng-template #dataTableBlock>
   <table mat-table [dataSource]="data" class="animal-table">
+    <ng-container matColumnDef="triggerDelete">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-raised-button
+                color="warn"
+                (click)="deleteRow(row)">Delete</button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="triggerEditSave">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row">
+        <ng-container *ngIf="!row.editMode; else saveBtn">
+          <button mat-raised-button
+                  (click)="editRow(row)" [disabled]="isEditButtonsDisabled()">Edit</button>
+        </ng-container>
+        <ng-template #saveBtn>
+          <button mat-raised-button
+                  color="primary"
+                  (click)="saveRow(row)">Save</button>
+        </ng-template>
+      </td>
+    </ng-container>
+<!--    Non-editable fields-->
     <mat-text-column name="cowId" headerText="Cow id" class="abc"></mat-text-column>
     <mat-text-column name="animalId" headerText="Animal id"></mat-text-column>
     <mat-text-column name="eventId" headerText="Event id"></mat-text-column>
     <mat-text-column name="currentGroupId" headerText="Current group id"></mat-text-column>
     <mat-text-column name="newGroupId" headerText="New group id"></mat-text-column>
-    <mat-text-column name="healthIndex" headerText="healthIndex"></mat-text-column>
-    <mat-text-column name="endDate" headerText="endDate"></mat-text-column>
-    <mat-text-column name="minValueDateTime" headerText="minValueDateTime"></mat-text-column>
-    <mat-text-column name="type" headerText="type"></mat-text-column>
-    <ng-container matColumnDef="deletable">
-      <th mat-header-cell *matHeaderCellDef>Deletable</th>
+<!--    Editable fields-->
+    <ng-container *ngFor="let columnDef of editableColumnDefinitions" [matColumnDef]="columnDef.name">
+      <th mat-header-cell *matHeaderCellDef>{{columnDef.headerText}}</th>
       <td mat-cell *matCellDef="let element">
-        <mat-checkbox (change)="null"
-                      [checked]="element.deletable"
-                      [disabled]="true">
-        </mat-checkbox>
+<!--        Edit mode-->
+        <ng-container *ngIf="element.editMode; else viewModeBlock">
+          <!--         Number field in edit mode-->
+          <ng-container *ngIf="columnDef.type === 'number'">
+            <mat-form-field>
+              <input matInput [(ngModel)]="element[columnDef.name]" type="number">
+            </mat-form-field>
+          </ng-container>
+          <!--        String field in edit mode-->
+          <ng-container *ngIf="columnDef.type === 'string'">
+              <mat-form-field>
+                <input matInput [(ngModel)]="element[columnDef.name]">
+              </mat-form-field>
+          </ng-container>
+          <!--        Boolean field in edit mode-->
+          <ng-container *ngIf="columnDef.type === 'boolean'">
+              <mat-checkbox [(ngModel)]="element[columnDef.name]">
+              </mat-checkbox>
+          </ng-container>
+        </ng-container>
+<!--        View mode-->
+        <ng-template #viewModeBlock>
+          <!--        Boolean field in view mode-->
+          <ng-container *ngIf="columnDef.type === 'boolean'; else numberStringViewBlock">
+            <mat-checkbox [(ngModel)]="element[columnDef.name]" disabled>
+            </mat-checkbox>
+          </ng-container>
+          <!--        String, number fields in view mode-->
+          <ng-template #numberStringViewBlock>{{element[columnDef.name]}}</ng-template>
+        </ng-template>
       </td>
     </ng-container>
-    <mat-text-column name="lactationNumber" headerText="lactationNumber"></mat-text-column>
-    <mat-text-column name="oldLactationNumber" headerText="oldLactationNumber"></mat-text-column>
-    <mat-text-column name="daysInLactation" headerText="daysInLactation"></mat-text-column>
-    <mat-text-column name="ageInDays" headerText="ageInDays"></mat-text-column>
-    <mat-text-column name="startDateTime" headerText="startDateTime"></mat-text-column>
-    <mat-text-column name="reportingDateTime" headerText="reportingDateTime"></mat-text-column>
-    <mat-text-column name="sire" headerText="B sire"></mat-text-column>
-    <mat-text-column name="breedingNumber" headerText="breedingNumber"></mat-text-column>
-    <mat-text-column name="interval" headerText="interval"></mat-text-column>
-    <mat-text-column name="heatIndexPeak" headerText="heatIndexPeak"></mat-text-column>
-    <mat-text-column name="newGroupName" headerText="newGroupName"></mat-text-column>
-    <mat-text-column name="currentGroupName" headerText="currentGroupName"></mat-text-column>
-    <mat-text-column name="destinationGroup" headerText="destinationGroup"></mat-text-column>
-    <mat-text-column name="destinationGroupName" headerText="destinationGroupName"></mat-text-column>
-    <mat-text-column name="daysInPregnancy" headerText="daysInPregnancy"></mat-text-column>
-    <mat-text-column name="alertType" headerText="alertType"></mat-text-column>
-    <mat-text-column name="duration" headerText="duration"></mat-text-column>
-    <mat-text-column name="originalStartDateTime" headerText="originalStartDateTime"></mat-text-column>
-    <mat-text-column name="alert" headerText="alert"></mat-text-column>
-    <mat-text-column name="original" headerText="original"></mat-text-column>
-    <mat-text-column name="isOutOfBreedingWindow" headerText="B isOutOfBreedingWindow"></mat-text-column>
-    <mat-text-column name="cowEntryStatus" headerText="cowEntryStatus"></mat-text-column>
-    <mat-text-column name="birthDateCalculated" headerText="B birthDateCalculated"></mat-text-column>
-    <mat-text-column name="newborns" headerText="B newborns"></mat-text-column>
-    <mat-text-column name="calvingEase" headerText="B calvingEase"></mat-text-column>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>

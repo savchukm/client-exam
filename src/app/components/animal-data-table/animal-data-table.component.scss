@@ -9,11 +9,27 @@
 .animal-table {
   width: 100%;
 
+  /* Hide up/down arrows for input type=number*/
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+
   tr:hover {
     background: whitesmoke;
   }
 
   ::ng-deep tr {
+    .mat-form-field-infix {
+      width: auto;
+    }
+
     th {
       white-space: nowrap;
     }

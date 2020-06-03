@@ -15,7 +15,7 @@ export class HttpMockInterceptor implements HttpInterceptor {
     if (req.url === 'mock-url') {
       return of(new HttpResponse(
         { status: 200, body: MOCK_ANIMAL_RESPONSE }
-      )).pipe(delay(3000));
+      )).pipe(delay(2000));
     }
     next.handle(req);
   }
