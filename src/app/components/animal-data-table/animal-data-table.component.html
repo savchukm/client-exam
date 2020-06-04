@@ -36,7 +36,7 @@
     <mat-text-column name="newGroupId" headerText="New group id"></mat-text-column>
 <!--    Editable fields-->
     <ng-container *ngFor="let columnDef of editableColumnDefinitions" [matColumnDef]="columnDef.name">
-      <th mat-header-cell *matHeaderCellDef>{{columnDef.headerText}}</th>
+      <th mat-header-cell *matHeaderCellDef>{{columnDef.title}}</th>
       <td mat-cell *matCellDef="let element">
 <!--        Edit mode-->
         <ng-container *ngIf="element.editMode; else viewModeBlock">
@@ -73,4 +73,30 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+  <div class="add-table-row">
+    <button mat-raised-button
+            color="primary"
+            (click)="addRow()">Add row</button>
+    <ng-container *ngFor="let columnDef of allColumnDefinitions">
+      <div *ngIf="columnDef.type === 'number'">
+        <mat-form-field>
+          <mat-label>{{columnDef.title}}</mat-label>
+          <input matInput [(ngModel)]="animalToAdd[columnDef.name]" type="number">
+        </mat-form-field>
+      </div>
+      <!--        String field in edit mode-->
+      <div *ngIf="columnDef.type === 'string'">
+        <mat-form-field>
+          <mat-label>{{columnDef.title}}</mat-label>
+          <input matInput [(ngModel)]="animalToAdd[columnDef.name]">
+        </mat-form-field>
+      </div>
+      <!--        Boolean field in edit mode-->
+      <div *ngIf="columnDef.type === 'boolean'">
+        <label class="checkbox-label">{{columnDef.title}}</label>
+        <mat-checkbox [(ngModel)]="animalToAdd[columnDef.name]">
+        </mat-checkbox>
+      </div>
+    </ng-container>
+  </div>
 </ng-template>

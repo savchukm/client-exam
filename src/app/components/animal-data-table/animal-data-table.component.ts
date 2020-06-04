@@ -1,6 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Animal } from '../../shared/models/animal.model';
-import { COLUMNS_TO_DISPLAY, EDITABLE_COLUMN_DEFINITIONS } from '../../shared/constants/animal-table.constant';
+import {
+  ALL_COLUMN_DEFINITIONS,
+  COLUMNS_TO_DISPLAY,
+  EDITABLE_COLUMN_DEFINITIONS
+} from '../../shared/constants/animal-table.constant';
 
 @Component({
   selector: 'app-animal-data-table',
@@ -8,17 +12,14 @@ import { COLUMNS_TO_DISPLAY, EDITABLE_COLUMN_DEFINITIONS } from '../../shared/co
   styleUrls: ['./animal-data-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AnimalDataTableComponent implements OnInit {
+export class AnimalDataTableComponent {
   @Input() data: Animal[];
   @Input() loading: boolean[];
 
   public displayedColumns: string[] = COLUMNS_TO_DISPLAY;
   public editableColumnDefinitions: any[] = EDITABLE_COLUMN_DEFINITIONS;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  public allColumnDefinitions: any[] = ALL_COLUMN_DEFINITIONS;
+  public animalToAdd: Animal = new Animal();
 
   deleteRow(row: Animal): void {
     this.data = this.data.filter((animal: Animal) => animal.eventId !== row.eventId);
@@ -30,6 +31,10 @@ export class AnimalDataTableComponent implements OnInit {
 
   saveRow(row: Animal): void {
     row.editMode = false;
+  }
+
+  addRow(): void {
+    this.data = [...this.data, this.animalToAdd];
   }
 
   isEditButtonsDisabled(): boolean {

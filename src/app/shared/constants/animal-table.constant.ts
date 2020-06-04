@@ -7,155 +7,185 @@ export const COLUMNS_TO_DISPLAY: string[] = [
   'isOutOfBreedingWindow', 'cowEntryStatus', 'birthDateCalculated', 'newborns', 'calvingEase'
 ];
 
+export const NON_EDITABLE_COLUMN_DEFINITIONS: any[] = [
+  {
+    type: 'number',
+    name: 'cowId',
+    title: 'Cow id'
+  },
+  {
+    type: 'string',
+    name: 'animalId',
+    title: 'Animal id'
+  },
+  {
+    type: 'number',
+    name: 'eventId',
+    title: 'Event id'
+  },
+  {
+    type: 'number',
+    name: 'currentGroupId',
+    title: 'Current group id'
+  },
+  {
+    type: '',
+    name: 'newGroupId',
+    title: 'New group id'
+  },
+];
+
 export const EDITABLE_COLUMN_DEFINITIONS: any[] = [
   {
     type: 'number',
     name: 'healthIndex',
-    headerText: 'Health index'
+    title: 'Health index'
   },
   {
     type: 'number',
     name: 'endDate',
-    headerText: 'End Date'
+    title: 'End Date'
   },
   {
     type: 'number',
     name: 'minValueDateTime',
-    headerText: 'Min value date time'
+    title: 'Min value date time'
   },
   {
     type: 'string',
     name: 'type',
-    headerText: 'Type'
+    title: 'Type'
   },
   {
     type: 'boolean',
     name: 'deletable',
-    headerText: 'Deletable'
+    title: 'Deletable'
   },
   {
     type: 'number',
     name: 'lactationNumber',
-    headerText: 'Lactation number'
+    title: 'Lactation number'
   },
   {
     type: 'number',
     name: 'oldLactationNumber',
-    headerText: 'Old lactation number'
+    title: 'Old lactation number'
   },
   {
     type: 'number',
     name: 'daysInLactation',
-    headerText: 'Days in lactation'
+    title: 'Days in lactation'
   },
   {
     type: 'number',
     name: 'ageInDays',
-    headerText: 'Age in days'
+    title: 'Age in days'
   },
   {
     type: 'number',
     name: 'startDateTime',
-    headerText: 'Start date time'
+    title: 'Start date time'
   },
   {
     type: 'number',
     name: 'reportingDateTime',
-    headerText: 'Reporting date time'
+    title: 'Reporting date time'
   },
   {
     type: 'boolean',
     name: 'sire',
-    headerText: 'Sire'
+    title: 'Sire'
   },
   {
     type: 'number',
     name: 'breedingNumber',
-    headerText: 'Breeding number'
+    title: 'Breeding number'
   },
   {
     type: 'number',
     name: 'interval',
-    headerText: 'Interval'
+    title: 'Interval'
   },
   {
     type: 'string',
     name: 'heatIndexPeak',
-    headerText: 'Heat index peak'
+    title: 'Heat index peak'
   },
   {
     type: 'string',
     name: 'newGroupName',
-    headerText: 'New group name'
+    title: 'New group name'
   },
   {
     type: 'string',
     name: 'currentGroupName',
-    headerText: 'Current group name'
+    title: 'Current group name'
   },
   {
     type: 'number',
     name: 'destinationGroup',
-    headerText: 'Destination group'
+    title: 'Destination group'
   },
   {
     type: 'string',
     name: 'destinationGroupName',
-    headerText: 'Destination group name'
+    title: 'Destination group name'
   },
   {
     type: 'number',
     name: 'daysInPregnancy',
-    headerText: 'Days in pregnancy'
+    title: 'Days in pregnancy'
   },
   {
     type: 'string',
     name: 'alertType',
-    headerText: 'Alert type'
+    title: 'Alert type'
   },
   {
     type: 'number',
     name: 'duration',
-    headerText: 'Duration'
+    title: 'Duration'
   },
   {
     type: 'number',
     name: 'originalStartDateTime',
-    headerText: 'Original start date time'
+    title: 'Original start date time'
   },
   {
     type: 'string',
     name: 'alert',
-    headerText: 'Alert'
+    title: 'Alert'
   },
   {
     type: 'string',
     name: 'original',
-    headerText: 'Original'
+    title: 'Original'
   },
   {
     type: 'boolean',
     name: 'isOutOfBreedingWindow',
-    headerText: 'Is out of breeding window'
+    title: 'Is out of breeding window'
   },
   {
     type: 'string',
     name: 'cowEntryStatus',
-    headerText: 'Cow entry status'
+    title: 'Cow entry status'
   },
   {
     type: 'boolean',
     name: 'birthDateCalculated',
-    headerText: 'Birth date calculated'
+    title: 'Birth date calculated'
   },
   {
     type: 'boolean',
     name: 'newborns',
-    headerText: 'Newborns'
+    title: 'Newborns'
   },
   {
     type: 'boolean',
     name: 'calvingEase',
-    headerText: 'Calving ease'
+    title: 'Calving ease'
   }
 ];
+
+export const ALL_COLUMN_DEFINITIONS = NON_EDITABLE_COLUMN_DEFINITIONS.concat(EDITABLE_COLUMN_DEFINITIONS);

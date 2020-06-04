@@ -36,7 +36,7 @@ export class Animal {
   public calvingEase: boolean;
   public editMode = false;
 
-  constructor(data: any) {
+  constructor(data: any = {}) {
     this.healthIndex = data.healthIndex;
     this.endDate = data.endDate;
     this.minValueDateTime = data.minValueDateTime;
