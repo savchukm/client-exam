@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Animal } from '../../shared/models/animal.model';
 import {
   ALL_COLUMN_DEFINITIONS,
@@ -15,6 +15,9 @@ import {
 export class AnimalDataTableComponent {
   @Input() data: Animal[];
   @Input() loading: boolean[];
+  @Output() remove: EventEmitter<Animal> = new EventEmitter<Animal>();
+  @Output() add: EventEmitter<Animal> = new EventEmitter<Animal>();
+  @Output() save: EventEmitter<Animal> = new EventEmitter<Animal>();
 
   public displayedColumns: string[] = COLUMNS_TO_DISPLAY;
   public editableColumnDefinitions: any[] = EDITABLE_COLUMN_DEFINITIONS;
@@ -22,7 +25,7 @@ export class AnimalDataTableComponent {
   public animalToAdd: Animal = new Animal();
 
   deleteRow(row: Animal): void {
-    this.data = this.data.filter((animal: Animal) => animal.eventId !== row.eventId);
+    this.remove.emit(row);
   }
 
   editRow(row: Animal): void {
@@ -31,10 +34,11 @@ export class AnimalDataTableComponent {
 
   saveRow(row: Animal): void {
     row.editMode = false;
+    this.save.emit(row);
   }
 
   addRow(): void {
-    this.data = [...this.data, this.animalToAdd];
+    this.add.emit(this.animalToAdd);
   }
 
   isEditButtonsDisabled(): boolean {

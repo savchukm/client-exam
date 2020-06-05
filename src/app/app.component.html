@@ -1,1 +1,6 @@
-<app-animal-data-table [data]="animalData$ | async" [loading]="animalDataLoading$ | async"></app-animal-data-table>
+<app-animal-data-table [data]="data"
+                       [loading]="animalDataLoading$ | async"
+                       (remove)="onAnimalRemove($event)"
+                       (save)="onAnimalSave($event)"
+                       (add)="onAnimalAdd($event)"
+></app-animal-data-table>

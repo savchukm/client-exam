@@ -34,6 +34,7 @@ export class Animal {
   public birthDateCalculated: boolean;
   public newborns: boolean;
   public calvingEase: boolean;
+  // UI props
   public editMode = false;
 
   constructor(data: any = {}) {

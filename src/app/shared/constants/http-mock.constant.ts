@@ -1,4 +1,4 @@
-export const MOCK_ANIMAL_RESPONSE = {
+export const MOCK_ANIMAL_INITIAL_STATE = {
   offset: 0,
   limit: 100,
   total: 16976,
